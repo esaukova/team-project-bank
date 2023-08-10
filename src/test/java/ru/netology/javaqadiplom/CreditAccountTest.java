@@ -50,8 +50,8 @@ public class CreditAccountTest {
 
     @Test
     public void shouldNotChangeInitBalanceIfPayAboveCreditLimit() {
-        CreditAccount account = new CreditAccount(0, 5000, 15);
-        account.pay(5001);
+        CreditAccount account = new CreditAccount(0, 5_000, 15);
+        account.pay(5_001);
         Assertions.assertEquals(0, account.getBalance());
     }
 
