@@ -8,21 +8,24 @@ public class CreditAccountTest {
     @Test
     public void shouldThrowExceptionWhenInitialBalanceNegative() {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> {new CreditAccount(-1_000, 5_000, 15);
+                () -> {
+                    new CreditAccount(-1_000, 5_000, 15);
                 });
     }
 
     @Test
     public void shouldThrowExceptionWhenCreditLimitNegative() {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> {new CreditAccount(1_000, -5_000, 15);
+                () -> {
+                    new CreditAccount(1_000, -5_000, 15);
                 });
     }
 
     @Test
     public void shouldThrowExceptionWhenInterestRateNegative() {
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> {new CreditAccount(0, 5_000, -15);
+                () -> {
+                    new CreditAccount(0, 5_000, -15);
                 });
     }
 
@@ -68,20 +71,21 @@ public class CreditAccountTest {
         CreditAccount account = new CreditAccount(1_000, 5_000, 15);
         account.pay(6_000);
 
-        Assertions.assertEquals(0, account.getBalance());
+        Assertions.assertEquals(-5000, account.getBalance());
     }
 
 
     @Test
     public void shouldAddToZeroInitBalance() {
-        CreditAccount account = new CreditAccount(0,5_000,15);
+        CreditAccount account = new CreditAccount(0, 5_000, 15);
         account.add(3_000);
 
         Assertions.assertEquals(3_000, account.getBalance());
     }
+
     @Test
     public void shouldAddToPositiveInitBalance() {
-        CreditAccount account = new CreditAccount(1_000,5_000,15);
+        CreditAccount account = new CreditAccount(1_000, 5_000, 15);
         account.add(3_000);
 
         Assertions.assertEquals(4_000, account.getBalance());
@@ -89,7 +93,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldKeepOriginalInitBalanceIfAmountNegative() {
-        CreditAccount account = new CreditAccount(1000,5_000,15);
+        CreditAccount account = new CreditAccount(1000, 5_000, 15);
         account.add(-3_000);
 
         Assertions.assertEquals(1000, account.getBalance());
@@ -97,7 +101,7 @@ public class CreditAccountTest {
 
     @Test
     public void shouldKeepOriginalInitBalanceIfAmountZero() {
-        CreditAccount account = new CreditAccount(1000,5_000,15);
+        CreditAccount account = new CreditAccount(1000, 5_000, 15);
         account.add(0);
 
         Assertions.assertEquals(1_000, account.getBalance());
@@ -105,7 +109,8 @@ public class CreditAccountTest {
 
     @Test
     public void shouldDoYearChangeWhenBalanceNegative() {
-        CreditAccount account = new CreditAccount(-200, 5_000, 15);
+        CreditAccount account = new CreditAccount(0, 5_000, 15);
+        account.pay(200);
         Assertions.assertEquals(-30, account.yearChange());
     }
 
